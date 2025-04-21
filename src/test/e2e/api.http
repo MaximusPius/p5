@@ -1,0 +1,25 @@
+### TODO#12 - Registro de nuevo usuario
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "test{{timestamp}}@email.com",
+  "password": "aaaaaaA1",
+  "role": "USER"
+}
+
+### Login del usuario
+POST http://localhost:8080/api/users/me/session
+Content-Type: application/json
+
+{
+  "email": "test{{timestamp}}@email.com",
+  "password": "aaaaaaA1"
+}
+
+> {% client.global.set("cookie", response.headers["set-cookie"][0].split(";")[0]) %}
+
+### Obtener perfil usando cookie de sesión
+GET http://localhost:8080/api/users/me
+Cookie: {{cookie}}
